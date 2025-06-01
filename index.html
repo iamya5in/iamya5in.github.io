@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en" class="scroll-smooth"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;title&gt;Yasin Hosain | Senior Mobile Application Engineer&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1">&lt;!-- Visualization &amp; Content Choices:</span></p>
+<p class="p1"><span class="s1">- Career Summary: Goal=Inform -&gt; Method=Text Block -&gt; Interaction=None -&gt; Justification=Provide a comprehensive overview upfront.</span></p>
+<p class="p1"><span class="s1">- Skills: Goal=Compare/Inform -&gt; Method=Categorized Lists &amp; Chart.js Bar Chart -&gt; Interaction=Hover on chart bars to see proficiency -&gt; Justification=Visually represents core competencies for quick assessment, which is more impactful than a simple list.</span></p>
+<p class="p1"><span class="s1">- Experience: Goal=Show Change/Organize -&gt; Method=Collapsible Vertical Timeline (HTML/CSS/JS) -&gt; Interaction=Click on job title to expand/collapse details -&gt; Justification=Keeps the UI clean and prevents a wall of text, allowing users to focus on specific roles.</span></p>
+<p class="p1"><span class="s1">- Education/Contact: Goal=Inform -&gt; Method=Styled Text &amp; Links -&gt; Interaction=Clickable links -&gt; Justification=Standard, clear presentation for essential information.</span></p>
+<p class="p1"><span class="s1">- All libraries/methods (Chart.js, custom JS for timeline) avoid SVG/Mermaid.</span></p>
+<p class="p1"><span class="s1">--&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</span></p>
+<p class="p1"><span class="s1">&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;display=swap" rel="stylesheet"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;style&gt;</span></p>
+<p class="p1"><span class="s1">body {</span></p>
+<p class="p1"><span class="s1">font-family: 'Inter', sans-serif;</span></p>
+<p class="p1"><span class="s1">background-color: #F8F7F4;</span></p>
+<p class="p1"><span class="s1">color: #2d2d2d;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.chart-container {</span></p>
+<p class="p1"><span class="s1">position: relative;</span></p>
+<p class="p1"><span class="s1">width: 100%;</span></p>
+<p class="p1"><span class="s1">max-width: 800px;</span></p>
+<p class="p1"><span class="s1">margin-left: auto;</span></p>
+<p class="p1"><span class="s1">margin-right: auto;</span></p>
+<p class="p1"><span class="s1">height: 400px;</span></p>
+<p class="p1"><span class="s1">max-height: 50vh;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">@media (max-width: 768px) {</span></p>
+<p class="p1"><span class="s1">.chart-container {</span></p>
+<p class="p1"><span class="s1">height: 300px;</span></p>
+<p class="p1"><span class="s1">max-height: 60vh;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.accent-color { color: #005A9C; }</span></p>
+<p class="p1"><span class="s1">.bg-accent-color { background-color: #005A9C; }</span></p>
+<p class="p1"><span class="s1">.border-accent-color { border-color: #005A9C; }</span></p>
+<p class="p1"><span class="s1">.timeline-item-content {</span></p>
+<p class="p1"><span class="s1">transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;</span></p>
+<p class="p1"><span class="s1">max-height: 0;</span></p>
+<p class="p1"><span class="s1">opacity: 0;</span></p>
+<p class="p1"><span class="s1">overflow: hidden;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.timeline-item-content.open {</span></p>
+<p class="p1"><span class="s1">max-height: 1000px;</span></p>
+<p class="p1"><span class="s1">opacity: 1;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.icon-plus, .icon-minus {</span></p>
+<p class="p1"><span class="s1">transition: transform 0.3s ease;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">.icon-minus {</span></p>
+<p class="p1"><span class="s1">transform: rotate(45deg);</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body class="antialiased"&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;nav class="bg-[#F8F7F4]/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex items-center justify-between h-16"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex-shrink-0"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#home" class="text-2xl font-bold tracking-tight"&gt;Yasin Hosain&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="hidden md:block"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="ml-10 flex items-baseline space-x-4"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#summary" class="text-gray-600 hover:accent-color px-3 py-2 rounded-md text-sm font-medium"&gt;Summary&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#skills" class="text-gray-600 hover:accent-color px-3 py-2 rounded-md text-sm font-medium"&gt;Skills&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#experience" class="text-gray-600 hover:accent-color px-3 py-2 rounded-md text-sm font-medium"&gt;Experience&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#contact" class="bg-accent-color text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"&gt;Contact&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="-mr-2 flex md:hidden"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;button type="button" id="mobile-menu-button" class="bg-gray-200 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-gray-300 focus:outline-none"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="sr-only"&gt;Open main menu&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/svg&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="md:hidden hidden" id="mobile-menu"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="px-2 pt-2 pb-3 space-y-1 sm:px-3"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#summary" class="text-gray-600 hover:accent-color block px-3 py-2 rounded-md text-base font-medium"&gt;Summary&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#skills" class="text-gray-600 hover:accent-color block px-3 py-2 rounded-md text-base font-medium"&gt;Skills&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#experience" class="text-gray-600 hover:accent-color block px-3 py-2 rounded-md text-base font-medium"&gt;Experience&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#contact" class="bg-accent-color text-white block px-3 py-2 rounded-full text-base font-medium hover:opacity-90 transition-opacity"&gt;Contact&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/nav&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;main&gt;</span></p>
+<p class="p1"><span class="s1">&lt;section id="home" class="py-20 md:py-32"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter"&gt;</span></p>
+<p class="p1"><span class="s1">Senior Mobile Application Engineer</span></p>
+<p class="p1"><span class="s1">&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="mt-4 text-lg md:text-xl font-medium accent-color"&gt;Android &amp; Flutter Expert | SDK Developer | Developer Advocate&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="mt-6 max-w-3xl mx-auto text-base md:text-lg text-gray-600"&gt;</span></p>
+<p class="p1"><span class="s1">Delivering high-performance mobile applications, SDKs, and fintech solutions for globally recognized brands.</span></p>
+<p class="p1"><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-10 flex flex-wrap justify-center gap-4"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="#experience" class="bg-accent-color text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity shadow-lg"&gt;View Experience&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="https://github.com/iamya5in" target="_blank" class="bg-gray-800 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-700 transition-colors shadow-lg"&gt;Visit GitHub&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;section id="summary" class="py-16 bg-white"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="text-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h2 class="text-3xl font-bold tracking-tight"&gt;Career Summary&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="mt-4 max-w-4xl mx-auto text-lg text-gray-600"&gt;This section provides a brief overview of my professional journey, highlighting key expertise and career aspirations.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-12 max-w-4xl mx-auto text-left text-gray-700 space-y-4 leading-relaxed"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p&gt;A results-oriented Senior Mobile Application Engineer with over 7 years of dedicated experience in architecting, developing, and deploying high-performance Android and Flutter applications, SDKs, and innovative fintech solutions. Proven leadership in spearheading mission-critical projects for globally recognized brands, including Samsung R&amp;D and MobilityOne. Passionate about robust system design, product optimization, and fostering developer communities through advocacy. Adept at driving cross-functional collaboration, championing product innovation, and mentoring engineering teams. Actively seeking challenging Senior or Lead Mobile Engineering roles in dynamic international markets, with a preference for opportunities in Malaysia and Turkey.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;section id="skills" class="py-16"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="text-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h2 class="text-3xl font-bold tracking-tight"&gt;Core Competencies&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="mt-4 max-w-4xl mx-auto text-lg text-gray-600"&gt;This interactive chart visualizes my key technical strengths. Hover over the bars to see my proficiency in each area. Below the chart, you'll find a more comprehensive list of my skills.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-12"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="chart-container"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;canvas id="skillsChart"&gt;&lt;/canvas&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h3 class="text-xl font-bold mb-4 accent-color"&gt;Software Engineering&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">&lt;ul class="space-y-2 text-gray-700"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;System Design &amp; Product Architecture&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Object-Oriented Programming (OOP)&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Database Management (RDBMS, SQL)&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;API Design &amp; Integration&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h3 class="text-xl font-bold mb-4 accent-color"&gt;FinTech &amp; Payments&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">&lt;ul class="space-y-2 text-gray-700"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Payment Gateway Integration&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;NFC &amp; POS Terminal Solutions&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;In-App Purchase Systems&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h3 class="text-xl font-bold mb-4 accent-color"&gt;Tools &amp; Methodologies&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">&lt;ul class="space-y-2 text-gray-700"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Version Control: Git&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Project Management: JIRA&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Agile Development Methodology&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Developer Advocacy &amp; Documentation&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;section id="experience" class="py-16 bg-white"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="text-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h2 class="text-3xl font-bold tracking-tight"&gt;Professional Experience&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="mt-4 max-w-4xl mx-auto text-lg text-gray-600"&gt;My career journey is presented as an interactive timeline. Click on any role to expand and view the key responsibilities and accomplishments for that position.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-12 max-w-3xl mx-auto"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="relative"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="absolute left-1/2 -ml-0.5 w-1 h-full bg-gray-200"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="space-y-12"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="timeline-item"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex items-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex-1 text-right pr-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h3 class="text-lg font-bold"&gt;Lead Engineer&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="text-sm text-gray-500"&gt;Samsung R&amp;D Institute Bangladesh&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="z-10 bg-accent-color w-6 h-6 rounded-full flex items-center justify-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="bg-white w-2 h-2 rounded-full"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex-1 pl-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="text-sm font-medium"&gt;Sept 2022 – Present&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-4 text-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;button class="timeline-toggle bg-gray-200 rounded-full p-2 hover:bg-gray-300 transition"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="icon-plus text-accent-color font-bold text-xl"&gt;+&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="timeline-item-content text-left p-6 bg-gray-50 rounded-lg mt-4"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;ul class="list-disc list-inside space-y-2 text-gray-700"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Led the end-to-end development of Samsung Pay Android and Flutter SDKs, including comprehensive sample applications for global developer adoption.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Spearheaded the architecture and implementation of the Samsung In-App Purchase (IAP) Flutter SDK, significantly enhancing cross-platform monetization capabilities for developers.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Served as a key Developer Advocate for Samsung Pay SDK and other developer tools, providing critical technical support, creating extensive documentation, and actively promoting adoption within the third-party developer ecosystem.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Collaborated extensively with global Samsung engineering teams, product managers, and business stakeholders to align SDK development with strategic objectives and drive widespread adoption.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;div class="timeline-item"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex items-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex-1 text-right pr-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h3 class="text-lg font-bold"&gt;Android Developer&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="text-sm text-gray-500"&gt;MobilityOne Sdn Bhd (TapnPay)&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="z-10 bg-accent-color w-6 h-6 rounded-full flex items-center justify-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="bg-white w-2 h-2 rounded-full"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex-1 pl-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="text-sm font-medium"&gt;Feb 2020 – Sept 2022&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-4 text-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;button class="timeline-toggle bg-gray-200 rounded-full p-2 hover:bg-gray-300 transition"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="icon-plus text-accent-color font-bold text-xl"&gt;+&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="timeline-item-content text-left p-6 bg-gray-50 rounded-lg mt-4"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;ul class="list-disc list-inside space-y-2 text-gray-700"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Successfully optimized an existing Android agent application to support multiple POS terminals, ensuring broad cross-device compatibility and enhanced operational efficiency.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Engineered and integrated NFC capabilities, thermal printing functionalities, and Android serial port communications for advanced payment terminal solutions.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Led the redevelopment of municipal bill payment and CRS ticketing applications, resulting in a 30% improvement in system stability and a significant reduction in maintenance overhead.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Executed a full migration of a legacy Ionic application to native Android, achieving a 40% uplift in performance and improved user experience.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Developed a parallel Flutter application alongside the native Android version, successfully extending financial service offerings to the iOS platform.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;div class="timeline-item"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex items-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex-1 text-right pr-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h3 class="text-lg font-bold"&gt;Junior Android Programmer&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="text-sm text-gray-500"&gt;CloudWell Ltd (PayWell)&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="z-10 bg-accent-color w-6 h-6 rounded-full flex items-center justify-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="bg-white w-2 h-2 rounded-full"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex-1 pl-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="text-sm font-medium"&gt;Dec 2017 – Dec 2019&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-4 text-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;button class="timeline-toggle bg-gray-200 rounded-full p-2 hover:bg-gray-300 transition"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="icon-plus text-accent-color font-bold text-xl"&gt;+&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="timeline-item-content text-left p-6 bg-gray-50 rounded-lg mt-4"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;ul class="list-disc list-inside space-y-2 text-gray-700"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Developed and maintained Android applications tailored for sales operations and Know Your Customer (KYC) data collection processes.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Integrated mPOS devices and Bluetooth printers to streamline payment processing and receipt generation.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;li&gt;Conducted research and development on WebRTC-based dialer functionalities and various payment features, including bill payments, mobile top-ups, and ticketing services.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;section id="contact" class="py-16"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="text-center md:text-left"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h2 class="text-3xl font-bold tracking-tight"&gt;Education&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-8 space-y-6"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h3 class="text-xl font-bold"&gt;B.Sc. in Computer Science &amp; Engineering&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="mt-1 text-gray-600"&gt;Daffodil International University&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="text-sm text-gray-500"&gt;CGPA: 3.15 / 4.00&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h3 class="text-xl font-bold"&gt;Diploma in Computer Engineering&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="mt-1 text-gray-600"&gt;Barisal Polytechnic Institute&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="text-sm text-gray-500"&gt;CGPA: 3.21 / 4.00&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="text-center md:text-left"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;h2 class="text-3xl font-bold tracking-tight"&gt;Get In Touch&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="mt-4 text-lg text-gray-600"&gt;Open to new opportunities and collaborations.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="mt-8 space-y-4"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="mailto:nameisyasin@gmail.com" class="flex items-center justify-center md:justify-start group"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="text-2xl mr-4 accent-color"&gt;✉️&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="text-lg group-hover:underline"&gt;nameisyasin@gmail.com&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="https://www.linkedin.com/in/iamya5in" target="_blank" class="flex items-center justify-center md:justify-start group"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="text-2xl mr-4 accent-color"&gt;🔗&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="text-lg group-hover:underline"&gt;linkedin.com/in/iamya5in&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;a href="https://github.com/iamya5in" target="_blank" class="flex items-center justify-center md:justify-start group"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="text-2xl mr-4 accent-color"&gt;💻&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="text-lg group-hover:underline"&gt;github.com/iamya5in&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="flex items-center justify-center md:justify-start group"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="text-2xl mr-4 accent-color"&gt;📞&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;span class="text-lg"&gt;+8801716952738&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/main&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;footer class="bg-gray-800 text-white"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-sm"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p&gt;&amp;copy; 2025 Yasin Hosain. All Rights Reserved.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;p class="mt-1 text-gray-400"&gt;Interactive resume designed and developed to showcase professional experience.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/footer&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1">document.addEventListener('DOMContentLoaded', function () {</span></p>
+<p class="p1"><span class="s1">const mobileMenuButton = document.getElementById('mobile-menu-button');</span></p>
+<p class="p1"><span class="s1">const mobileMenu = document.getElementById('mobile-menu');</span></p>
+<p class="p1"><span class="s1">mobileMenuButton.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1">mobileMenu.classList.toggle('hidden');</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">document.querySelectorAll('#mobile-menu a').forEach(link =&gt; {</span></p>
+<p class="p1"><span class="s1">link.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1">mobileMenu.classList.add('hidden');</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');</span></p>
+<p class="p1"><span class="s1">const skillsChart = new Chart(skillsChartCtx, {</span></p>
+<p class="p1"><span class="s1">type: 'bar',</span></p>
+<p class="p1"><span class="s1">data: {</span></p>
+<p class="p1"><span class="s1">labels: ['Native Android (Kotlin/Java)', 'Flutter (Dart)', 'Android SDK Development', 'System Design', 'FinTech &amp; Payments', 'Developer Advocacy'],</span></p>
+<p class="p1"><span class="s1">datasets: [{</span></p>
+<p class="p1"><span class="s1">label: 'Proficiency',</span></p>
+<p class="p1"><span class="s1">data: [95, 90, 85, 80, 88, 92],</span></p>
+<p class="p1"><span class="s1">backgroundColor: 'rgba(0, 90, 156, 0.7)',</span></p>
+<p class="p1"><span class="s1">borderColor: 'rgba(0, 90, 156, 1)',</span></p>
+<p class="p1"><span class="s1">borderWidth: 1,</span></p>
+<p class="p1"><span class="s1">borderRadius: 5,</span></p>
+<p class="p1"><span class="s1">}]</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1">options: {</span></p>
+<p class="p1"><span class="s1">indexAxis: 'y',</span></p>
+<p class="p1"><span class="s1">responsive: true,</span></p>
+<p class="p1"><span class="s1">maintainAspectRatio: false,</span></p>
+<p class="p1"><span class="s1">scales: {</span></p>
+<p class="p1"><span class="s1">x: {</span></p>
+<p class="p1"><span class="s1">beginAtZero: true,</span></p>
+<p class="p1"><span class="s1">max: 100,</span></p>
+<p class="p1"><span class="s1">ticks: {</span></p>
+<p class="p1"><span class="s1">callback: function(value) {</span></p>
+<p class="p1"><span class="s1">return value + '%'</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1">y: {</span></p>
+<p class="p1"><span class="s1">ticks: {</span></p>
+<p class="p1"><span class="s1">autoSkip: false,</span></p>
+<p class="p1"><span class="s1">callback: function(value, index, values) {</span></p>
+<p class="p1"><span class="s1">const label = this.getLabelForValue(value);</span></p>
+<p class="p1"><span class="s1">if (label.length &gt; 25) {</span></p>
+<p class="p1"><span class="s1">return label.substring(0, 25) + '...';</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">return label;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1">plugins: {</span></p>
+<p class="p1"><span class="s1">legend: {</span></p>
+<p class="p1"><span class="s1">display: false</span></p>
+<p class="p1"><span class="s1">},</span></p>
+<p class="p1"><span class="s1">tooltip: {</span></p>
+<p class="p1"><span class="s1">callbacks: {</span></p>
+<p class="p1"><span class="s1">label: function(context) {</span></p>
+<p class="p1"><span class="s1">let label = context.dataset.label || '';</span></p>
+<p class="p1"><span class="s1">if (label) {</span></p>
+<p class="p1"><span class="s1">label += ': ';</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">if (context.parsed.x !== null) {</span></p>
+<p class="p1"><span class="s1">label += context.parsed.x + '% (Expert)';</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">return label;</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">const timelineToggles = document.querySelectorAll('.timeline-toggle');</span></p>
+<p class="p1"><span class="s1">timelineToggles.forEach(toggle =&gt; {</span></p>
+<p class="p1"><span class="s1">toggle.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1">const content = toggle.parentElement.nextElementSibling;</span></p>
+<p class="p1"><span class="s1">const icon = toggle.querySelector('span');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">content.classList.toggle('open');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">if (content.classList.contains('open')) {</span></p>
+<p class="p1"><span class="s1">icon.textContent = '-';</span></p>
+<p class="p1"><span class="s1">icon.classList.remove('icon-plus');</span></p>
+<p class="p1"><span class="s1">icon.classList.add('icon-minus');</span></p>
+<p class="p1"><span class="s1">} else {</span></p>
+<p class="p1"><span class="s1">icon.textContent = '+';</span></p>
+<p class="p1"><span class="s1">icon.classList.remove('icon-minus');</span></p>
+<p class="p1"><span class="s1">icon.classList.add('icon-plus');</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">});</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+</body>
+</html>
