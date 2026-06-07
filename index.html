@@ -1,419 +1,810 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yasin Hosain | Senior Mobile Application Engineer</title>
-    <!-- Visualization & Content Choices: 
-        - Career Summary: Goal=Inform -> Method=Text Block -> Interaction=None -> Justification=Provide a comprehensive overview upfront.
-        - Skills: Goal=Compare/Inform -> Method=Categorized Lists & Chart.js Bar Chart -> Interaction=Hover on chart bars to see proficiency -> Justification=Visually represents core competencies for quick assessment, which is more impactful than a simple list.
-        - Experience: Goal=Show Change/Organize -> Method=Collapsible Vertical Timeline (HTML/CSS/JS) -> Interaction=Click on job title to expand/collapse details -> Justification=Keeps the UI clean and prevents a wall of text, allowing users to focus on specific roles.
-        - Education/Contact: Goal=Inform -> Method=Styled Text & Links -> Interaction=Clickable links -> Justification=Standard, clear presentation for essential information.
-        - All libraries/methods (Chart.js, custom JS for timeline) avoid SVG/Mermaid. 
-    -->
+    <title>Yasin Hosain — Senior Mobile Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F8F7F4;
-            color: #2d2d2d;
+        :root {
+            --ink: #0F0E0B;
+            --paper: #F5F0E8;
+            --cream: #EDE8DC;
+            --accent: #C8102E;
+            --muted: #7A7368;
+            --rule: #D4CEBC;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* ─── TYPOGRAPHY ─── */
+        .playfair { font-family: 'Playfair Display', serif; }
+        .mono { font-family: 'DM Mono', monospace; }
+
+        /* ─── RULES ─── */
+        .rule-top { border-top: 3px solid var(--ink); }
+        .rule-thin { border-top: 1px solid var(--rule); }
+        .rule-thick { border-top: 6px solid var(--ink); }
+        .rule-red { border-top: 2px solid var(--accent); }
+
+        /* ─── NAV ─── */
+        nav {
+            background: var(--paper);
+            border-bottom: 3px solid var(--ink);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+        }
+
+        .nav-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ink);
+            transition: color 0.15s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .nav-tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--paper);
+            background: var(--accent);
+            padding: 4px 10px;
+        }
+
+        /* ─── MASTHEAD ─── */
+        .masthead {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem 0;
+            border-bottom: 3px solid var(--ink);
+        }
+
+        .masthead-kicker {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .masthead-kicker::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .masthead-headline {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(3.5rem, 9vw, 8.5rem);
+            line-height: 0.92;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .masthead-headline em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .masthead-subgrid {
+            display: grid;
+            grid-template-columns: 1fr 1px 2fr;
+            gap: 2rem;
+            padding: 2rem 0 2.5rem;
+            align-items: start;
+        }
+
+        .masthead-divider { background: var(--rule); }
+
+        .masthead-role {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .masthead-meta {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--muted);
+            margin-top: 0.75rem;
+            line-height: 1.8;
+        }
+
+        .masthead-summary {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: #3a3830;
+            column-count: 2;
+            column-gap: 2.5rem;
+        }
+
+        /* ─── MAIN GRID ─── */
+        .content-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ─── SECTION LABELS ─── */
+        .section-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 0.6rem 0 0.5rem;
+        }
+
+        /* ─── SKILLS SECTION ─── */
+        .skills-section {
+            padding: 3rem 0;
+            border-bottom: 3px solid var(--ink);
+        }
+
+        .skills-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: baseline;
+            margin-bottom: 2.5rem;
+        }
+
+        .skills-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .skills-deck {
+            font-size: 0.9rem;
+            color: var(--muted);
+            max-width: 400px;
+            border-left: 2px solid var(--rule);
+            padding-left: 1rem;
+            line-height: 1.6;
+        }
+
+        .skills-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
         .chart-container {
             position: relative;
+            height: 320px;
             width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 400px;
-            max-height: 50vh;
         }
-        @media (max-width: 768px) {
-            .chart-container {
-                height: 300px;
-                max-height: 60vh;
-            }
+
+        .skills-sidebar { }
+
+        .skills-sidebar-group {
+            padding: 1.25rem 0;
+            border-top: 1px solid var(--rule);
         }
-        .accent-color { color: #005A9C; }
-        .bg-accent-color { background-color: #005A9C; }
-        .border-accent-color { border-color: #005A9C; }
-        .timeline-item-content {
-            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
+        .skills-sidebar-group:last-child { border-bottom: 1px solid var(--rule); }
+
+        .skills-sidebar-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+        }
+
+        .skills-sidebar-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .skill-tag {
+            font-size: 0.78rem;
+            background: var(--cream);
+            border: 1px solid var(--rule);
+            padding: 3px 10px;
+            color: var(--ink);
+        }
+
+        /* ─── EXPERIENCE SECTION ─── */
+        .experience-section {
+            padding: 3rem 0;
+        }
+
+        .experience-header {
+            margin-bottom: 3rem;
+        }
+
+        .experience-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .experience-title em {
+            font-style: italic;
+            color: var(--muted);
+        }
+
+        /* ─── JOB CARD ─── */
+        .job-card {
+            display: grid;
+            grid-template-columns: 160px 1px 1fr;
+            gap: 0 2.5rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--rule);
+            cursor: pointer;
+        }
+
+        .job-card:hover .job-company { color: var(--accent); }
+
+        .job-meta { padding-top: 0.1rem; }
+
+        .job-date {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .job-company {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            line-height: 1.3;
+            transition: color 0.15s;
+        }
+
+        .job-divider {
+            background: var(--rule);
+            width: 1px;
+        }
+
+        .job-body { }
+
+        .job-role {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .job-toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0;
+        }
+
+        .job-toggle-btn {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: none;
+            border: 1px solid var(--rule);
+            padding: 4px 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .job-toggle-btn:hover, .job-toggle-btn.open {
+            background: var(--ink);
+            color: var(--paper);
+            border-color: var(--ink);
+        }
+
+        .job-content {
             max-height: 0;
-            opacity: 0;
             overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.4s ease, margin-top 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
         }
-        .timeline-item-content.open {
-            max-height: 1000px;
+
+        .job-content.open {
+            max-height: 800px;
             opacity: 1;
+            margin-top: 1.5rem;
         }
-        .icon-plus, .icon-minus {
-             transition: transform 0.3s ease;
+
+        .job-bullets {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem 2rem;
         }
-        .icon-minus {
-            transform: rotate(45deg);
+
+        .job-bullets li {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: #3a3830;
+            padding-left: 1.1rem;
+            position: relative;
+        }
+
+        .job-bullets li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.7rem;
+            top: 0.18rem;
+        }
+
+        /* ─── EDUCATION + CONTACT ─── */
+        .bottom-section {
+            border-top: 3px solid var(--ink);
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            gap: 0;
+        }
+
+        .bottom-col {
+            padding: 3rem 0;
+        }
+
+        .bottom-col:first-child { padding-right: 3rem; }
+        .bottom-col:last-child { padding-left: 3rem; }
+
+        .bottom-divider { background: var(--rule); }
+
+        .bottom-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .edu-item { margin-bottom: 1.75rem; }
+
+        .edu-degree {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            line-height: 1.3;
+        }
+
+        .edu-school {
+            font-size: 0.88rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+
+        .edu-cgpa {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-top: 0.2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--rule);
+            text-decoration: none;
+            color: var(--ink);
+            transition: color 0.15s;
+        }
+
+        .contact-link:hover { color: var(--accent); }
+        .contact-link:last-child { border-bottom: 1px solid var(--rule); }
+
+        .contact-icon {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            width: 60px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .contact-value {
+            font-size: 0.92rem;
+            line-height: 1.4;
+            word-break: break-all;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 3px solid var(--ink);
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .footer-copy {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.62rem;
+            color: #888;
+            letter-spacing: 0.08em;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .masthead-subgrid { grid-template-columns: 1fr; }
+            .masthead-divider { display: none; }
+            .masthead-summary { column-count: 1; }
+            .skills-layout { grid-template-columns: 1fr; }
+            .job-card { grid-template-columns: 1fr; gap: 0.5rem; }
+            .job-divider { display: none; }
+            .job-bullets { grid-template-columns: 1fr; }
+            .bottom-section { grid-template-columns: 1fr; }
+            .bottom-col:first-child { padding-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 2rem; }
+            .bottom-col:last-child { padding-left: 0; }
+            .bottom-divider { display: none; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <nav class="bg-[#F8F7F4]/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <a href="#home" class="text-2xl font-bold tracking-tight">Yasin Hosain</a>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#summary" class="text-gray-600 hover:accent-color px-3 py-2 rounded-md text-sm font-medium">Summary</a>
-                        <a href="#skills" class="text-gray-600 hover:accent-color px-3 py-2 rounded-md text-sm font-medium">Skills</a>
-                        <a href="#experience" class="text-gray-600 hover:accent-color px-3 py-2 rounded-md text-sm font-medium">Experience</a>
-                        <a href="#contact" class="bg-accent-color text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity">Contact</a>
-                    </div>
-                </div>
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button" id="mobile-menu-button" class="bg-gray-200 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-gray-300 focus:outline-none">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+<!-- ─── NAV ─── -->
+<nav>
+    <div class="nav-inner">
+        <span class="nav-title">Yasin Hosain</span>
+        <ul class="nav-links">
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="mailto:nameisyasin@gmail.com" class="nav-tag">Hire Me</a>
+    </div>
+</nav>
+
+<!-- ─── MASTHEAD ─── -->
+<header class="masthead">
+    <div class="masthead-kicker">Vol. VII &nbsp;·&nbsp; Mobile Engineering &nbsp;·&nbsp; Bangladesh</div>
+    <h1 class="masthead-headline">
+        Senior<br>
+        Mobile <em>App</em><br>
+        Engineer
+    </h1>
+
+    <div class="masthead-subgrid">
+        <div>
+            <p class="masthead-role">Android &amp; Flutter Expert<br>SDK Developer · Developer Advocate</p>
+            <p class="masthead-meta">
+                7+ Years Experience<br>
+                Samsung R&D · MobilityOne<br>
+                Open to Malaysia &amp; Turkey
+            </p>
         </div>
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#summary" class="text-gray-600 hover:accent-color block px-3 py-2 rounded-md text-base font-medium">Summary</a>
-                <a href="#skills" class="text-gray-600 hover:accent-color block px-3 py-2 rounded-md text-base font-medium">Skills</a>
-                <a href="#experience" class="text-gray-600 hover:accent-color block px-3 py-2 rounded-md text-base font-medium">Experience</a>
-                <a href="#contact" class="bg-accent-color text-white block px-3 py-2 rounded-full text-base font-medium hover:opacity-90 transition-opacity">Contact</a>
-            </div>
-        </div>
-    </nav>
+        <div class="masthead-divider"></div>
+        <p class="masthead-summary">
+            A results-oriented Senior Mobile Application Engineer with over seven years of dedicated experience architecting, developing, and deploying high-performance Android and Flutter applications, SDKs, and fintech solutions. Proven leadership in mission-critical projects for globally recognized brands including Samsung R&D and MobilityOne. Passionate about robust system design, product optimization, and fostering developer communities through advocacy. Adept at driving cross-functional collaboration and mentoring engineering teams toward technical excellence.
+        </p>
+    </div>
+</header>
 
-    <main>
-        <section id="home" class="py-20 md:py-32">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter">
-                    Senior Mobile Application Engineer
-                </h1>
-                <p class="mt-4 text-lg md:text-xl font-medium accent-color">Android & Flutter Expert | SDK Developer | Developer Advocate</p>
-                <p class="mt-6 max-w-3xl mx-auto text-base md:text-lg text-gray-600">
-                    Delivering high-performance mobile applications, SDKs, and fintech solutions for globally recognized brands.
-                </p>
-                <div class="mt-10 flex flex-wrap justify-center gap-4">
-                    <a href="#experience" class="bg-accent-color text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity shadow-lg">View Experience</a>
-                    <a href="https://github.com/iamya5in" target="_blank" class="bg-gray-800 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-700 transition-colors shadow-lg">Visit GitHub</a>
-                </div>
+<!-- ─── SKILLS ─── -->
+<section id="skills">
+    <div class="content-grid">
+        <div class="skills-section">
+            <div class="section-label">Core Competencies</div>
+            <div class="skills-header">
+                <h2 class="skills-title">Technical<br>Expertise</h2>
+                <p class="skills-deck">Proficiency across mobile platforms, payment systems, and developer tooling — built over seven years of hands-on production work.</p>
             </div>
-        </section>
-
-        <section id="summary" class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold tracking-tight">Career Summary</h2>
-                    <p class="mt-4 max-w-4xl mx-auto text-lg text-gray-600">This section provides a brief overview of my professional journey, highlighting key expertise and career aspirations.</p>
-                </div>
-                <div class="mt-12 max-w-4xl mx-auto text-left text-gray-700 space-y-4 leading-relaxed">
-                   <p>A results-oriented Senior Mobile Application Engineer with over 7 years of dedicated experience in architecting, developing, and deploying high-performance Android and Flutter applications, SDKs, and innovative fintech solutions. Proven leadership in spearheading mission-critical projects for globally recognized brands, including Samsung R&D and MobilityOne. Passionate about robust system design, product optimization, and fostering developer communities through advocacy. Adept at driving cross-functional collaboration, championing product innovation, and mentoring engineering teams. Actively seeking challenging Senior or Lead Mobile Engineering roles in dynamic international markets, with a preference for opportunities in Malaysia and Turkey.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold tracking-tight">Core Competencies</h2>
-                    <p class="mt-4 max-w-4xl mx-auto text-lg text-gray-600">This interactive chart visualizes my key technical strengths. Hover over the bars to see my proficiency in each area. Below the chart, you'll find a more comprehensive list of my skills.</p>
-                </div>
-                <div class="mt-12">
+            <div class="skills-layout">
+                <div>
                     <div class="chart-container">
                         <canvas id="skillsChart"></canvas>
                     </div>
                 </div>
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center">
-                    <div>
-                        <h3 class="text-xl font-bold mb-4 accent-color">Software Engineering</h3>
-                        <ul class="space-y-2 text-gray-700">
-                            <li>System Design & Product Architecture</li>
-                            <li>Object-Oriented Programming (OOP)</li>
-                            <li>Database Management (RDBMS, SQL)</li>
-                            <li>API Design & Integration</li>
-                        </ul>
+                <div class="skills-sidebar">
+                    <div class="skills-sidebar-group">
+                        <div class="skills-sidebar-label">Software Engineering</div>
+                        <div class="skills-sidebar-items">
+                            <span class="skill-tag">System Design</span>
+                            <span class="skill-tag">OOP</span>
+                            <span class="skill-tag">RDBMS / SQL</span>
+                            <span class="skill-tag">API Design</span>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-4 accent-color">FinTech & Payments</h3>
-                        <ul class="space-y-2 text-gray-700">
-                            <li>Payment Gateway Integration</li>
-                            <li>NFC & POS Terminal Solutions</li>
-                            <li>In-App Purchase Systems</li>
-                        </ul>
+                    <div class="skills-sidebar-group">
+                        <div class="skills-sidebar-label">FinTech &amp; Payments</div>
+                        <div class="skills-sidebar-items">
+                            <span class="skill-tag">Payment Gateways</span>
+                            <span class="skill-tag">NFC &amp; POS</span>
+                            <span class="skill-tag">In-App Purchase</span>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-4 accent-color">Tools & Methodologies</h3>
-                        <ul class="space-y-2 text-gray-700">
-                            <li>Version Control: Git</li>
-                            <li>Project Management: JIRA</li>
-                            <li>Agile Development Methodology</li>
-                            <li>Developer Advocacy & Documentation</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold tracking-tight">Professional Experience</h2>
-                    <p class="mt-4 max-w-4xl mx-auto text-lg text-gray-600">My career journey is presented as an interactive timeline. Click on any role to expand and view the key responsibilities and accomplishments for that position.</p>
-                </div>
-                <div class="mt-12 max-w-3xl mx-auto">
-                    <div class="relative">
-                        <div class="absolute left-1/2 -ml-0.5 w-1 h-full bg-gray-200"></div>
-                        <div class="space-y-12">
-                            <div class="timeline-item">
-                                <div class="flex items-center">
-                                    <div class="flex-1 text-right pr-8">
-                                        <h3 class="text-lg font-bold">Lead Engineer</h3>
-                                        <p class="text-sm text-gray-500">Samsung R&D Institute Bangladesh</p>
-                                    </div>
-                                    <div class="z-10 bg-accent-color w-6 h-6 rounded-full flex items-center justify-center">
-                                        <div class="bg-white w-2 h-2 rounded-full"></div>
-                                    </div>
-                                    <div class="flex-1 pl-8">
-                                        <p class="text-sm font-medium">Sept 2022 – Present</p>
-                                    </div>
-                                </div>
-                                <div class="mt-4 text-center">
-                                    <button class="timeline-toggle bg-gray-200 rounded-full p-2 hover:bg-gray-300 transition">
-                                        <span class="icon-plus text-accent-color font-bold text-xl">+</span>
-                                    </button>
-                                </div>
-                                <div class="timeline-item-content text-left p-6 bg-gray-50 rounded-lg mt-4">
-                                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                        <li>Led the end-to-end development of Samsung Pay Android and Flutter SDKs, including comprehensive sample applications for global developer adoption.</li>
-                                        <li>Spearheaded the architecture and implementation of the Samsung In-App Purchase (IAP) Flutter SDK, significantly enhancing cross-platform monetization capabilities for developers.</li>
-                                        <li>Served as a key Developer Advocate for Samsung Pay SDK and other developer tools, providing critical technical support, creating extensive documentation, and actively promoting adoption within the third-party developer ecosystem.</li>
-                                        <li>Collaborated extensively with global Samsung engineering teams, product managers, and business stakeholders to align SDK development with strategic objectives and drive widespread adoption.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                             <div class="timeline-item">
-                                <div class="flex items-center">
-                                    <div class="flex-1 text-right pr-8">
-                                        <h3 class="text-lg font-bold">Android Developer</h3>
-                                        <p class="text-sm text-gray-500">MobilityOne Sdn Bhd (TapnPay)</p>
-                                    </div>
-                                    <div class="z-10 bg-accent-color w-6 h-6 rounded-full flex items-center justify-center">
-                                        <div class="bg-white w-2 h-2 rounded-full"></div>
-                                    </div>
-                                    <div class="flex-1 pl-8">
-                                        <p class="text-sm font-medium">Feb 2020 – Sept 2022</p>
-                                    </div>
-                                </div>
-                                <div class="mt-4 text-center">
-                                    <button class="timeline-toggle bg-gray-200 rounded-full p-2 hover:bg-gray-300 transition">
-                                        <span class="icon-plus text-accent-color font-bold text-xl">+</span>
-                                    </button>
-                                </div>
-                                <div class="timeline-item-content text-left p-6 bg-gray-50 rounded-lg mt-4">
-                                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                        <li>Successfully optimized an existing Android agent application to support multiple POS terminals, ensuring broad cross-device compatibility and enhanced operational efficiency.</li>
-                                        <li>Engineered and integrated NFC capabilities, thermal printing functionalities, and Android serial port communications for advanced payment terminal solutions.</li>
-                                        <li>Led the redevelopment of municipal bill payment and CRS ticketing applications, resulting in a 30% improvement in system stability and a significant reduction in maintenance overhead.</li>
-                                        <li>Executed a full migration of a legacy Ionic application to native Android, achieving a 40% uplift in performance and improved user experience.</li>
-                                        <li>Developed a parallel Flutter application alongside the native Android version, successfully extending financial service offerings to the iOS platform.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <div class="flex items-center">
-                                    <div class="flex-1 text-right pr-8">
-                                        <h3 class="text-lg font-bold">Junior Android Programmer</h3>
-                                        <p class="text-sm text-gray-500">CloudWell Ltd (PayWell)</p>
-                                    </div>
-                                    <div class="z-10 bg-accent-color w-6 h-6 rounded-full flex items-center justify-center">
-                                        <div class="bg-white w-2 h-2 rounded-full"></div>
-                                    </div>
-                                    <div class="flex-1 pl-8">
-                                        <p class="text-sm font-medium">Dec 2017 – Dec 2019</p>
-                                    </div>
-                                </div>
-                                <div class="mt-4 text-center">
-                                    <button class="timeline-toggle bg-gray-200 rounded-full p-2 hover:bg-gray-300 transition">
-                                        <span class="icon-plus text-accent-color font-bold text-xl">+</span>
-                                    </button>
-                                </div>
-                                <div class="timeline-item-content text-left p-6 bg-gray-50 rounded-lg mt-4">
-                                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                        <li>Developed and maintained Android applications tailored for sales operations and Know Your Customer (KYC) data collection processes.</li>
-                                        <li>Integrated mPOS devices and Bluetooth printers to streamline payment processing and receipt generation.</li>
-                                        <li>Conducted research and development on WebRTC-based dialer functionalities and various payment features, including bill payments, mobile top-ups, and ticketing services.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
+                    <div class="skills-sidebar-group">
+                        <div class="skills-sidebar-label">Tools &amp; Methods</div>
+                        <div class="skills-sidebar-items">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">JIRA</span>
+                            <span class="skill-tag">Agile</span>
+                            <span class="skill-tag">Dev Advocacy</span>
+                            <span class="skill-tag">Documentation</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section id="contact" class="py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div class="text-center md:text-left">
-                        <h2 class="text-3xl font-bold tracking-tight">Education</h2>
-                         <div class="mt-8 space-y-6">
-                            <div>
-                                <h3 class="text-xl font-bold">B.Sc. in Computer Science & Engineering</h3>
-                                <p class="mt-1 text-gray-600">Daffodil International University</p>
-                                <p class="text-sm text-gray-500">CGPA: 3.15 / 4.00</p>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">Diploma in Computer Engineering</h3>
-                                <p class="mt-1 text-gray-600">Barisal Polytechnic Institute</p>
-                                <p class="text-sm text-gray-500">CGPA: 3.21 / 4.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center md:text-left">
-                        <h2 class="text-3xl font-bold tracking-tight">Get In Touch</h2>
-                        <p class="mt-4 text-lg text-gray-600">Open to new opportunities and collaborations.</p>
-                        <div class="mt-8 space-y-4">
-                            <a href="mailto:nameisyasin@gmail.com" class="flex items-center justify-center md:justify-start group">
-                                <span class="text-2xl mr-4 accent-color">✉️</span>
-                                <span class="text-lg group-hover:underline">nameisyasin@gmail.com</span>
-                            </a>
-                            <a href="https://www.linkedin.com/in/iamya5in" target="_blank" class="flex items-center justify-center md:justify-start group">
-                                <span class="text-2xl mr-4 accent-color">🔗</span>
-                                <span class="text-lg group-hover:underline">linkedin.com/in/iamya5in</span>
-                            </a>
-                             <a href="https://github.com/iamya5in" target="_blank" class="flex items-center justify-center md:justify-start group">
-                                <span class="text-2xl mr-4 accent-color">💻</span>
-                                <span class="text-lg group-hover:underline">github.com/iamya5in</span>
-                            </a>
-                            <div class="flex items-center justify-center md:justify-start group">
-                                <span class="text-2xl mr-4 accent-color">📞</span>
-                                <span class="text-lg">+8801716952738</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-800 text-white">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-sm">
-            <p>&copy; 2025 Yasin Hosain. All Rights Reserved.</p>
-            <p class="mt-1 text-gray-400">Interactive resume designed and developed to showcase professional experience.</p>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
+<!-- ─── EXPERIENCE ─── -->
+<section id="experience">
+    <div class="content-grid">
+        <div class="experience-section">
+            <div class="section-label">Career Timeline</div>
+            <div class="experience-header rule-thin" style="padding-bottom:2rem; border-bottom: 1px solid var(--rule);">
+                <h2 class="experience-title">Professional<br><em>Experience</em></h2>
+            </div>
 
-            const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
-            const skillsChart = new Chart(skillsChartCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Native Android (Kotlin/Java)', 'Flutter (Dart)', 'Android SDK Development', 'System Design', 'FinTech & Payments', 'Developer Advocacy'],
-                    datasets: [{
-                        label: 'Proficiency',
-                        data: [95, 90, 85, 80, 88, 92],
-                        backgroundColor: 'rgba(0, 90, 156, 0.7)',
-                        borderColor: 'rgba(0, 90, 156, 1)',
-                        borderWidth: 1,
-                        borderRadius: 5,
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%'
-                                }
-                            }
-                        },
-                        y: {
-                           ticks: {
-                                autoSkip: false,
-                                callback: function(value, index, values) {
-                                    const label = this.getLabelForValue(value);
-                                    if (label.length > 25) {
-                                        return label.substring(0, 25) + '...';
-                                    }
-                                    return label;
-                                }
-                           }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.x !== null) {
-                                        label += context.parsed.x + '% (Expert)';
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    }
+            <!-- Job 1 -->
+            <div class="job-card" onclick="toggleJob(this)">
+                <div class="job-meta">
+                    <div class="job-date">Sept 2022 — Present</div>
+                    <div class="job-company">Samsung R&amp;D Institute Bangladesh</div>
+                </div>
+                <div class="job-divider"></div>
+                <div class="job-body">
+                    <h3 class="job-role">Lead Engineer</h3>
+                    <div class="job-toggle-row">
+                        <button class="job-toggle-btn">View Details +</button>
+                    </div>
+                    <div class="job-content">
+                        <ul class="job-bullets">
+                            <li>Led end-to-end development of Samsung Pay Android and Flutter SDKs, including comprehensive sample applications for global developer adoption.</li>
+                            <li>Spearheaded architecture and implementation of the Samsung In-App Purchase Flutter SDK, enhancing cross-platform monetization for developers.</li>
+                            <li>Served as Developer Advocate for Samsung Pay SDK, providing critical technical support and creating extensive documentation.</li>
+                            <li>Collaborated with global Samsung engineering teams, product managers, and business stakeholders to align SDK development with strategic objectives.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="job-card" onclick="toggleJob(this)">
+                <div class="job-meta">
+                    <div class="job-date">Feb 2020 — Sept 2022</div>
+                    <div class="job-company">MobilityOne Sdn Bhd (TapnPay)</div>
+                </div>
+                <div class="job-divider"></div>
+                <div class="job-body">
+                    <h3 class="job-role">Android Developer</h3>
+                    <div class="job-toggle-row">
+                        <button class="job-toggle-btn">View Details +</button>
+                    </div>
+                    <div class="job-content">
+                        <ul class="job-bullets">
+                            <li>Optimized Android agent application to support multiple POS terminals, ensuring broad cross-device compatibility and enhanced operational efficiency.</li>
+                            <li>Engineered NFC capabilities, thermal printing, and Android serial port communications for advanced payment terminal solutions.</li>
+                            <li>Led redevelopment of municipal bill payment and CRS ticketing applications, achieving a 30% improvement in system stability.</li>
+                            <li>Executed full migration of a legacy Ionic application to native Android, achieving a 40% uplift in performance and user experience.</li>
+                            <li>Developed a parallel Flutter application extending financial services to the iOS platform.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="job-card" onclick="toggleJob(this)" style="border-bottom: 1px solid var(--rule);">
+                <div class="job-meta">
+                    <div class="job-date">Dec 2017 — Dec 2019</div>
+                    <div class="job-company">CloudWell Ltd (PayWell)</div>
+                </div>
+                <div class="job-divider"></div>
+                <div class="job-body">
+                    <h3 class="job-role">Junior Android Programmer</h3>
+                    <div class="job-toggle-row">
+                        <button class="job-toggle-btn">View Details +</button>
+                    </div>
+                    <div class="job-content">
+                        <ul class="job-bullets">
+                            <li>Developed and maintained Android applications for sales operations and KYC data collection processes.</li>
+                            <li>Integrated mPOS devices and Bluetooth printers to streamline payment processing and receipt generation.</li>
+                            <li>Conducted R&amp;D on WebRTC-based dialer functionalities and payment features including bill payments, mobile top-ups, and ticketing.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ─── EDUCATION + CONTACT ─── -->
+<section id="contact">
+    <div class="content-grid">
+        <div class="bottom-section">
+            <div class="bottom-col">
+                <div class="section-label">Academic Background</div>
+                <h2 class="bottom-title">Education</h2>
+                <div class="edu-item">
+                    <div class="edu-degree">B.Sc. in Computer Science &amp; Engineering</div>
+                    <div class="edu-school">Daffodil International University</div>
+                    <div class="edu-cgpa">CGPA 3.15 / 4.00</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-degree">Diploma in Computer Engineering</div>
+                    <div class="edu-school">Barisal Polytechnic Institute</div>
+                    <div class="edu-cgpa">CGPA 3.21 / 4.00</div>
+                </div>
+            </div>
+            <div class="bottom-divider"></div>
+            <div class="bottom-col">
+                <div class="section-label">Open to Opportunities</div>
+                <h2 class="bottom-title">Get in Touch</h2>
+                <a href="mailto:nameisyasin@gmail.com" class="contact-link">
+                    <span class="contact-icon">Email</span>
+                    <span class="contact-value">nameisyasin@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/iamya5in" target="_blank" class="contact-link">
+                    <span class="contact-icon">LinkedIn</span>
+                    <span class="contact-value">linkedin.com/in/iamya5in</span>
+                </a>
+                <a href="https://github.com/iamya5in" target="_blank" class="contact-link">
+                    <span class="contact-icon">GitHub</span>
+                    <span class="contact-value">github.com/iamya5in</span>
+                </a>
+                <div class="contact-link" style="cursor:default;">
+                    <span class="contact-icon">Phone</span>
+                    <span class="contact-value">+880 171 695 2738</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <div class="footer-inner">
+        <span class="footer-name">Yasin Hosain</span>
+        <span class="footer-copy">© 2026 · Senior Mobile Engineer · All Rights Reserved</span>
+    </div>
+</footer>
+
+<script>
+// ─── CHART ───
+const ctx = document.getElementById('skillsChart').getContext('2d');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Native Android (Kotlin/Java)', 'Flutter (Dart)', 'Android SDK Dev', 'System Design', 'FinTech & Payments', 'Developer Advocacy'],
+        datasets: [{
+            label: 'Proficiency',
+            data: [95, 90, 85, 80, 88, 92],
+            backgroundColor: (ctx) => {
+                const i = ctx.dataIndex;
+                return i === 0 ? '#C8102E' : '#0F0E0B';
+            },
+            borderWidth: 0,
+            borderRadius: 0,
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                beginAtZero: true,
+                max: 100,
+                grid: { color: '#E8E3D6' },
+                border: { display: false },
+                ticks: {
+                    font: { family: 'DM Mono', size: 10 },
+                    color: '#7A7368',
+                    callback: v => v + '%'
                 }
-            });
+            },
+            y: {
+                grid: { display: false },
+                border: { display: false },
+                ticks: {
+                    font: { family: 'DM Sans', size: 12, weight: '500' },
+                    color: '#0F0E0B',
+                }
+            }
+        },
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                backgroundColor: '#0F0E0B',
+                titleFont: { family: 'DM Mono', size: 10 },
+                bodyFont: { family: 'DM Mono', size: 11 },
+                callbacks: {
+                    label: ctx => ` ${ctx.parsed.x}% proficiency`
+                }
+            }
+        }
+    }
+});
 
-            const timelineToggles = document.querySelectorAll('.timeline-toggle');
-            timelineToggles.forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    const content = toggle.parentElement.nextElementSibling;
-                    const icon = toggle.querySelector('span');
-                    
-                    content.classList.toggle('open');
+// ─── TOGGLE JOBS ───
+function toggleJob(card) {
+    const content = card.querySelector('.job-content');
+    const btn = card.querySelector('.job-toggle-btn');
+    const isOpen = content.classList.contains('open');
 
-                    if (content.classList.contains('open')) {
-                        icon.textContent = '-';
-                        icon.classList.remove('icon-plus');
-                        icon.classList.add('icon-minus');
-                    } else {
-                        icon.textContent = '+';
-                        icon.classList.remove('icon-minus');
-                        icon.classList.add('icon-plus');
-                    }
-                });
-            });
-        });
-    </script>
+    content.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.textContent = isOpen ? 'View Details +' : 'Close Details −';
+}
+</script>
+
 </body>
 </html>
